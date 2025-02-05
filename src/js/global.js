@@ -1,23 +1,29 @@
-import gsap from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import nav from './nav'
+import { BlurScrollEffect as BlurScrollEffect1 } from './effects/textEffect'
+
+// Registers the ScrollTrigger plugin with GSAP
 gsap.registerPlugin(ScrollTrigger)
 
 function global() {
-  // Animate the HERO
-  const animateHero = () => {}
-
-  // Animate the FOOTER
-  const animateFooter = () => {}
-
-  const mm = gsap.matchMedia() // Create a matchMedia instance
-
   const init = () => {
-    mm.add('(min-width: 479px)', () => {
-      animateHero()
-      animateFooter()
+    const effects = [
+      {
+        selector: 'h1,h2,h3,h4,h5,.h1,.h2,.h3,.h4,.h5',
+        effect: BlurScrollEffect1,
+      },
+    ]
+
+    // Iterate over each effect configuration and apply the effect to all matching elements
+    effects.forEach(({ selector, effect }) => {
+      document.querySelectorAll(selector).forEach((el) => {
+        new effect(el)
+      })
     })
   }
+
   init()
+  //
+  nav()
 }
 
 export default global

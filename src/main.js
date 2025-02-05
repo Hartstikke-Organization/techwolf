@@ -1,23 +1,18 @@
-// import global from './js/global'
-import clients from './js/clients'
-import flipCode from './js/flipCode'
+import global from './js/global'
+
 import home from './js/pages/home'
-import './styles/style.css'
+import './css/style.css'
 
 // Main function to determine which scripts to run
 function main() {
+  console.log('hi')
   const pageWrapper = document.querySelector('body')
+  global()
 
   if (pageWrapper.classList.contains('home')) {
-    flipCode()
     home()
-    clients()
   } else if (pageWrapper.classList.contains('product')) {
     // product()
-  } else if (pageWrapper.classList.contains('about')) {
-    // about()
-  } else if (pageWrapper.classList.contains('configurator')) {
-    // configurator()
   }
 }
 
