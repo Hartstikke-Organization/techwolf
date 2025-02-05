@@ -1,7 +1,7 @@
 gsap.registerPlugin(ScrollTrigger)
 
 function nav() {
-  const navbarMenu = document.querySelector('.nav_wrap')
+  const navbarMenu = document.querySelector('.nav_component')
   const offsetY = 100
   const scrollThreshold = offsetY + 300 // 100px (offsetY) + 300px = 400px
   let oldScroll = 0
