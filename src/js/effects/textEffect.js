@@ -23,7 +23,7 @@ export class BlurScrollEffect {
     // Split text for animation and store the reference.
     this.splitter = new TextSplitter(this.textElement, {
       resizeCallback: textResizeCallback,
-      splitTypeTypes: 'words, lines',
+      splitTypeTypes: 'lines',
     })
 
     // Trigger the initial scroll effect.
@@ -39,15 +39,20 @@ export class BlurScrollEffect {
     gsap.fromTo(
       lines,
       {
-        filter: 'blur(4px) brightness(0%)',
+        // filter: 'blur(4px) brightness(0%)',
         willChange: 'filter',
+        opacity: 0,
+        y: '1rem',
       },
       {
-        ease: 'none', // Animation easing.
-        filter: 'blur(0px) brightness(100%)',
+        ease: 'power3.out', // Animation easing.
+        // filter: 'blur(0px) brightness(100%)',
+        opacity: 1,
+
         //
-        stagger: 0.1, // Delay between starting animations for each character.
-        duration: 0.5,
+        stagger: 0.15, // Delay between starting animations for each character.
+        duration: 0.6,
+        y: '0rem',
         scrollTrigger: {
           trigger: this.textElement, // Element that triggers the animation.
           start: 'top bottom-=8%', // Animation starts when element hits bottom of viewport.

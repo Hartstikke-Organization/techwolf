@@ -22,6 +22,7 @@ function global() {
   }
 
   init()
+  document.querySelector('body').classList.add('visible')
   //
   nav()
 }
