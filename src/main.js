@@ -11,8 +11,8 @@ function main() {
 
   if (pageWrapper.classList.contains('home')) {
     home()
-  } else if (pageWrapper.classList.contains('product')) {
-    // product()
+  } else if (pageWrapper.classList.contains('customer-stories-detail')) {
+    // flipRelatedImages()
   }
 }
 
