@@ -3,7 +3,7 @@ gsap.registerPlugin(ScrollTrigger)
 function nav() {
   let originalTheme = { ...colorThemes.getTheme('dark') }
 
-  $('[data-wf--switch-to-theme--variant]').each(function () {
+  $('[data-animate-theme-to]').each(function () {
     // let originalTheme = $(this).attr('data-wf--switch-to-theme--variant') // Store original theme
     let currentTheme = originalTheme // Keep track of current theme
 
@@ -15,9 +15,7 @@ function nav() {
       end: 'bottom 5%',
       onToggle: ({ self, isActive }) => {
         if (isActive) {
-          let newTheme = colorThemes.getTheme(
-            $(this).attr('data-wf--switch-to-theme--variant')
-          )
+          let newTheme = colorThemes.getTheme($(this).attr('data-animate-theme-to'))
           currentTheme = newTheme // Update to the new theme
           gsap.to('.nav_component', {
             ...newTheme,
@@ -70,11 +68,7 @@ function nav() {
       navbarMenu.classList.remove('is-active')
     }
 
-    if (
-      window.scrollY > scrollThreshold &&
-      window.scrollY > oldScroll &&
-      navbarMenu.classList.contains('is-active')
-    ) {
+    if (window.scrollY > scrollThreshold && window.scrollY > oldScroll && navbarMenu.classList.contains('is-active')) {
       // when scrolling DOWN
       navbarMenu.classList.add('is-scrolled')
     } else {
