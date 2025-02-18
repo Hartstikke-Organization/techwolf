@@ -1,0 +1,37 @@
+.accordion_item:has(.accordion_component.is-opened) .steps_item-line {
+  height: 100%;
+}
+
+.accordion_item:has(.accordion_component.is-opened) .steps_item-dot {
+  background: var(--brand--purple);
+  color: var(--_theme---text-color--text-alternate);
+}
+
+.steps_item-line {
+  height: 0%;
+  transition: height 0.2s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+@media only screen and (min-width: 992px) {
+  /* Makes all text inside component black. 
+  Change the color of the text here, instead of on Webflow for this to work */
+  .tabs_button_list .tabs_button_item {
+    color: var(--_theme---text-color--text-primary);
+  }
+
+  /* Makes all text inside component grey on hover.
+  Change the color of the text here, instead of on Webflow for this to work */
+  .tabs_button_list:hover .tabs_button_item {
+    color: var(--_theme---text-color--text-secondary);
+  }
+
+  /* Makes text inside link block black on hover.
+  Change the color of the text here, instead of on Webflow for this to work */
+  .tabs_button_list:hover .tabs_button_item:hover {
+    color: var(--_theme---text-color--text-primary);
+  }
+
+  .tabs_button_list:hover .tabs_button_item:hover .tabs_button_title {
+    transform: translateX(0.5rem);
+  }
+}

@@ -7,10 +7,12 @@ function nav() {
     // let originalTheme = $(this).attr('data-wf--switch-to-theme--variant') // Store original theme
     let currentTheme = originalTheme // Keep track of current theme
 
+    const defaultDuration = 0.1
+
     ScrollTrigger.create({
       trigger: $(this),
-      start: 'top 10%',
-      end: 'bottom 10%',
+      start: 'top 5%',
+      end: 'bottom 5%',
       onToggle: ({ self, isActive }) => {
         if (isActive) {
           let newTheme = colorThemes.getTheme(
@@ -19,29 +21,29 @@ function nav() {
           currentTheme = newTheme // Update to the new theme
           gsap.to('.nav_component', {
             ...newTheme,
-            duration: 0.2,
+            duration: defaultDuration,
           })
           if ($(this).siblings('.section_wrap').length > 0) {
             gsap.to('.nav_bg', {
               width: 'calc(100vw - 1.25rem)',
-              duration: 0.3,
+              duration: defaultDuration,
             })
           } else {
             gsap.to('.nav_bg', {
               width: '100vw',
-              duration: 0.3,
+              duration: defaultDuration,
             })
           }
         } else {
           // Animate back to the original theme
           gsap.to('.nav_component', {
             ...colorThemes.getTheme('dark'),
-            duration: 0.2,
+            duration: defaultDuration,
           })
 
           gsap.to('.nav_bg', {
             width: '100vw', // Reset width or adjust accordingly
-            duration: 0.3,
+            duration: defaultDuration,
           })
         }
       },
