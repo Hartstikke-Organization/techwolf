@@ -26,8 +26,6 @@ function main() {
       })
 
       activeSlide.find('video')[0].play()
-
-      slider.css('--transform', index * -100 + '%')
     }
     makeActive(1)
 
@@ -35,22 +33,6 @@ function main() {
       let slideIndex = $(this).index()
       makeActive(slideIndex)
       console.log('made active')
-    })
-
-    let startX
-    let endX
-    slider.on('touchstart', function (e) {
-      startX = e.originalEvent.touches[0].pageX
-    })
-    slider.on('touchend', function (e) {
-      endX = e.originalEvent.changedTouches[0].pageX
-      let activeIndex = slides.filter('.is-active').index()
-
-      if (startX - endX < -10 && activeIndex > 0) {
-        makeActive(activeIndex - 1)
-      } else if (startX - endX > 10 && activeIndex < slides.length - 1) {
-        makeActive(activeIndex + 1)
-      }
     })
   })
 
