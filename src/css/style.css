@@ -268,3 +268,22 @@
 [data-modal-name][data-modal-status='active'] {
   display: flex;
 }
+
+/* Fade the links that are not active */
+.tab-content_bottom:has(.tab-content_item.active) .tab-content_item:not(.active) {
+  opacity: 0.5;
+}
+
+.tab-content_item.active .tab-content_icon {
+  background: var(--brand--purple);
+  color: var(--_theme---text-color--text-alternate);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .tab-content_item:not(.active):hover .tab-content_item-bottom {
+    background-color: rgba(0, 0, 0, 0.75);
+  }
+  .tab-content_item:not(.active):hover .tab-content_icon {
+    transform: translate(25%, 0px);
+  }
+}

@@ -5,6 +5,7 @@ import home from './js/pages/home'
 import './css/style.css'
 import initVimeoPlayer from './js/effects/vimeoPlayer'
 import initModalBasic from './js/effects/modal'
+import initTabSystem from './js/effects/tabSystem'
 
 // Main function to determine which scripts to run
 function main() {
@@ -12,6 +13,7 @@ function main() {
   global()
   initVimeoPlayer()
   initModalBasic()
+  initTabSystem()
 
   $('.video-slider_wrap').each(function () {
     let slider = $(this)
@@ -25,7 +27,7 @@ function main() {
         $(this)[0].pause()
       })
 
-      activeSlide.find('video')[0].play()
+      activeSlide.find('video')[0] && activeSlide.find('video')[0].play()
     }
     makeActive(1)
 
