@@ -287,3 +287,20 @@
     transform: translate(25%, 0px);
   }
 }
+
+.navmenu__dropdown-grid {
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  opacity: 0;
+  transform: translateX(-2rem);
+  will-change: opacity, transform;
+}
+
+.link-list__list-item:has(.navmenu__dropdown.w--open) .navmenu__dropdown-grid {
+  transform: translateX(0);
+  opacity: 1;
+}
+/* .navmenu__dropdown-grid:hover {
+  transform: translateX(0rem);
+  opacity: 1;
+  background-color: black;
+} */
