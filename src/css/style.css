@@ -288,19 +288,41 @@
   }
 }
 
-.navmenu__dropdown-grid {
+/* .navmenu__dropdown-grid {
   transition: opacity 0.5s ease, transform 0.5s ease;
   opacity: 0;
   transform: translateX(-2rem);
   will-change: opacity, transform;
-}
-
-.link-list__list-item:has(.navmenu__dropdown.w--open) .navmenu__dropdown-grid {
-  transform: translateX(0);
-  opacity: 1;
-}
-/* .navmenu__dropdown-grid:hover {
-  transform: translateX(0rem);
-  opacity: 1;
-  background-color: black;
 } */
+
+.nav_wrap:has(.navmenu__dropdown.w--open) {
+  --_theme---link-color--link-highlight: #62ffd8;
+  --_theme---link-color--link-secondary: #aaa;
+  --_theme---border-color--border-highlight: #62ffd8;
+  --_theme---border-color--border-primary: #090d1f;
+  --_theme---background-color--background-highlight: #62ffd8;
+  --_theme---button-secondary--border: #090d1f;
+  --_theme---button-primary--text-hover: #090d1f;
+  --_theme---background-color--background-white: white;
+  --_theme---text-color--text-highlight: #62ffd8;
+  --_theme---background-color--background-0: #fafafa00;
+  --_theme---background-color--background-alternate: #090d1f;
+  --_theme---text-color--text-alternate: #fafafa;
+  --_theme---background-color--background-secondary: #f3f3f2;
+  --_theme---background-color--background-05: #fafafa0d;
+  --_theme---border-color--border-secondary: #8487964d;
+  --_theme---button-secondary--text-hover: #090d1f;
+  --_theme---button-secondary--background-hover: #62ffd8;
+  --_theme---button-primary--background-hover: #8dffe3;
+  --_theme---border-color--border-tertiary: #090d1f1a;
+  --_theme---button-secondary--text: #fafafa;
+  --_theme---button-secondary--background: #090d1f;
+  --_theme---button-primary--text: #090d1f;
+  --_theme---button-primary--background: #62ffd8;
+  --_theme---button-primary--border: #62ffd8;
+  --_theme---text-color--text-primary: #090d1f;
+  --_theme---link-color--link-primary: #090d1f;
+  --_theme---text-color--text-title: #090d1f;
+  --_theme---text-color--text-secondary: #848796;
+  --_theme---background-color--background: #fafafa;
+}
