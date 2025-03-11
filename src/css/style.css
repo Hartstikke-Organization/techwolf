@@ -7,10 +7,12 @@
   color: var(--_theme---text-color--text-alternate);
 }
 
+/*
 .steps_item-line {
   height: 0%;
   transition: height 0.2s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
+  */
 
 @media only screen and (min-width: 992px) {
   /* Makes all text inside component black. 
@@ -325,4 +327,8 @@
   --_theme---text-color--text-title: #090d1f;
   --_theme---text-color--text-secondary: #848796;
   --_theme---background-color--background: #fafafa;
+}
+
+.quote-detail_quote {
+  margin-bottom: 0 !important;
 }

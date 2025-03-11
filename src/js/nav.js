@@ -1,43 +1,14 @@
 gsap.registerPlugin(ScrollTrigger)
 
 function nav() {
-  let originalTheme = { ...colorThemes.getTheme('dark') }
-
-  // document.querySelectorAll('.link-list__dropdown-toggle').forEach((element) => {
-  //   const navMenu = document.querySelector('.nav_wrap')
-
-  //   // Function to check if any dropdown is still open
-  //   const toggleThemeClass = () => {
-  //     let dropdownExists = document.querySelector('.link-list__dropdown-toggle.w--open')
-  //     if (!dropdownExists) {
-  //       gsap.to('.nav_wrap', {
-  //         ...colorThemes.getTheme('light'),
-  //         duration: 0.3,
-  //       })
-  //     }
-  //   }
-
-  //   // Click Event - Check if any dropdown remains open
-  //   element.addEventListener('click', () => {
-  //     setTimeout(toggleThemeClass, 50) // Delay slightly to wait for Webflow's class update
-  //   })
-
-  //   // Hover Events
-  //   element.addEventListener('mouseenter', () => {
-  //     // navMenu.classList.add('u-theme-light-text')
-  //     gsap.to('.nav_wrap', {
-  //       ...colorThemes.getTheme('light'),
-  //       duration: 0.3,
-  //     })
-  //   })
-
-  //   element.addEventListener('mouseleave', () => {
-  //     gsap.to('.nav_wrap', {
-  //       ...colorThemes.getTheme('dark'),
-  //       duration: 0.3,
-  //     })
-  //   })
-  // })
+  const body = document.querySelector('body')
+  let originalThemeColor
+  if (body.classList.contains('u-theme-dark')) {
+    originalThemeColor = 'dark'
+  } else {
+    originalThemeColor = 'light'
+  }
+  let originalTheme = { ...colorThemes.getTheme(originalThemeColor) }
 
   $('[data-animate-theme-to]').each(function () {
     let currentTheme = originalTheme // Keep track of current theme
@@ -70,7 +41,7 @@ function nav() {
         } else {
           // Animate back to the original theme
           gsap.to('.nav_component', {
-            ...colorThemes.getTheme('dark'),
+            ...colorThemes.getTheme(originalThemeColor),
             duration: defaultDuration,
           })
 
@@ -84,7 +55,7 @@ function nav() {
   })
 
   const navbarMenu = document.querySelector('.nav_component')
-  const offsetY = 100
+  const offsetY = 20
   const scrollThreshold = offsetY + 2000 // 100px (offsetY) + 300px = 400px
   let oldScroll = 0
 
@@ -107,7 +78,6 @@ function nav() {
       // when scrolling DOWN
       navbarMenu.classList.add('is-scrolled')
     } else {
-      // when scrolling UP or below the threshold
       navbarMenu.classList.remove('is-scrolled')
     }
 
