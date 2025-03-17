@@ -29,7 +29,7 @@ function initTabSystem() {
 
       // In this function, you can basically do anything you want, that should happen as a tab is active
       // Maybe you have a circle filling, some other element growing, you name it.
-      gsap.set(bar, { scaleY: 0, transformOrigin: isHorizontal ? 'left center' : 'center top' })
+      gsap.set(bar, { scaleX: isHorizontal ? 0 : 1, scaleY: isHorizontal ? 1 : 0, transformOrigin: isHorizontal ? 'left center' : 'center top' })
       progressBarTween = gsap.to(bar, {
         scaleY: 1,
         scaleX: 1,
@@ -79,7 +79,7 @@ function initTabSystem() {
         outgoingContent.classList.remove('active')
         outgoingVisual?.classList.remove('active')
         tl.set(outgoingBar, { transformOrigin: isHorizontal ? 'right center' : 'center bottom' })
-          .to(outgoingBar, { scaleY: isHorizontal ? 1 : 0, scaleX: isHorizontal ? 0 : 1, duration: 0.3 }, 0)
+          .to(outgoingBar, { scaleY: isHorizontal ? 1 : 0, scaleX: isHorizontal ? 1 : 0, duration: 0.3 }, 0)
           .to(outgoingVisual, { autoAlpha: 0, xPercent: visualIsRight ? 3 : -3 }, 0)
           .to(outgoingContent.querySelector('[data-tabs="item-details"]'), { height: 0 }, 0)
       }
