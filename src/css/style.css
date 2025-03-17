@@ -297,7 +297,9 @@
   will-change: opacity, transform;
 } */
 
-.nav_wrap:has(.navmenu__dropdown.w--open) {
+.nav_wrap:has(.navmenu__dropdown.w--open),
+.nav_wrap:has([data-nav-menu-open]),
+.nav_component:has([data-nav-menu-open]) .nav_wrap {
   --_theme---link-color--link-highlight: #62ffd8;
   --_theme---link-color--link-secondary: #aaa;
   --_theme---border-color--border-highlight: #62ffd8;

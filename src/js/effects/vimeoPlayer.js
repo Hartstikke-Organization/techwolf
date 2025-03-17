@@ -176,6 +176,18 @@ function initVimeoPlayer() {
         }
       })
     })
+    // Close modal on `Escape` key
+    document.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape') {
+        vimeoPlayerPause()
+        // If paused by user => kill the scroll-based autoplay
+        if (vimeoElement.getAttribute('data-vimeo-autoplay') === 'true') {
+          vimeoElement.setAttribute('data-vimeo-paused-by-user', 'true')
+          // Removing scroll listener (if you’d like)
+          window.removeEventListener('scroll', checkVisibility)
+        }
+      }
+    })
 
     // Click: Play
     const playBtn = vimeoElement.querySelector('[data-vimeo-control="play"]')
