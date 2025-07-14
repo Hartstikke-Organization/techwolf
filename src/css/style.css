@@ -290,13 +290,6 @@
   }
 }
 
-/* .navmenu__dropdown-grid {
-  transition: opacity 0.5s ease, transform 0.5s ease;
-  opacity: 0;
-  transform: translateX(-2rem);
-  will-change: opacity, transform;
-} */
-
 .nav_wrap:has(.navmenu__dropdown.w--open),
 .nav_wrap:has([data-nav-menu-open]),
 .nav_component:has([data-nav-menu-open]) .nav_wrap {

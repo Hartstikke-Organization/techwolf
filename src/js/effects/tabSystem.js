@@ -3,6 +3,7 @@ function initTabSystem() {
 
   wrappers.forEach((wrapper) => {
     const contentItems = wrapper.querySelectorAll('[data-tabs="content-item"]')
+    console.log(contentItems)
     const visualItems = wrapper.querySelectorAll('[data-tabs="visual-item"]')
 
     const autoplay = wrapper.dataset.tabsAutoplay === 'true'
@@ -29,7 +30,11 @@ function initTabSystem() {
 
       // In this function, you can basically do anything you want, that should happen as a tab is active
       // Maybe you have a circle filling, some other element growing, you name it.
-      gsap.set(bar, { scaleX: isHorizontal ? 0 : 1, scaleY: isHorizontal ? 1 : 0, transformOrigin: isHorizontal ? 'left center' : 'center top' })
+      gsap.set(bar, {
+        scaleX: isHorizontal ? 0 : 1,
+        scaleY: isHorizontal ? 1 : 0,
+        transformOrigin: isHorizontal ? 'left center' : 'center top',
+      })
       progressBarTween = gsap.to(bar, {
         scaleY: 1,
         scaleX: 1,
@@ -56,39 +61,42 @@ function initTabSystem() {
 
       const incomingContent = contentItems[index]
       const incomingVisual = visualItems[index]
-      const incomingBar = incomingContent.querySelector('[data-tabs="item-progress"]')
+
+      const incomingBar = incomingContent?.querySelector('[data-tabs="item-progress"]')
 
       outgoingContent?.classList.remove('active')
       outgoingVisual?.classList.remove('active')
-      incomingContent.classList.add('active')
+      incomingContent?.classList.add('active')
       incomingVisual.classList.add('active')
 
-      const tl = gsap.timeline({
-        defaults: { duration: 0.65, ease: 'power3.inOut' },
-        onComplete: () => {
-          activeContent = incomingContent
-          activeVisual = incomingVisual
-          isAnimating = false
-          if (autoplay) startProgressBar(index) // Start autoplay bar here
-        },
-      })
+      if (incomingContent) {
+        const tl = gsap.timeline({
+          defaults: { duration: 0.65, ease: 'power3.inOut' },
+          onComplete: () => {
+            activeContent = incomingContent
+            activeVisual = incomingVisual
+            isAnimating = false
+            if (autoplay) startProgressBar(index) // Start autoplay bar here
+          },
+        })
 
-      // Wrap 'outgoing' in a check to prevent warnings on first run of the function
-      // Of course, during first run (on page load), there's no 'outgoing' tab yet!
-      if (outgoingContent) {
-        outgoingContent.classList.remove('active')
-        outgoingVisual?.classList.remove('active')
-        tl.set(outgoingBar, { transformOrigin: isHorizontal ? 'right center' : 'center bottom' })
-          .to(outgoingBar, { scaleY: isHorizontal ? 1 : 0, scaleX: isHorizontal ? 1 : 0, duration: 0.3 }, 0)
-          .to(outgoingVisual, { autoAlpha: 0, xPercent: visualIsRight ? 3 : -3 }, 0)
-          .to(outgoingContent.querySelector('[data-tabs="item-details"]'), { height: 0 }, 0)
+        // Wrap 'outgoing' in a check to prevent warnings on first run of the function
+        // Of course, during first run (on page load), there's no 'outgoing' tab yet!
+        if (outgoingContent) {
+          outgoingContent.classList.remove('active')
+          outgoingVisual?.classList.remove('active')
+          tl.set(outgoingBar, { transformOrigin: isHorizontal ? 'right center' : 'center bottom' })
+            .to(outgoingBar, { scaleY: isHorizontal ? 1 : 0, scaleX: isHorizontal ? 1 : 0, duration: 0.3 }, 0)
+            .to(outgoingVisual, { autoAlpha: 0, xPercent: visualIsRight ? 3 : -3 }, 0)
+            .to(outgoingContent.querySelector('[data-tabs="item-details"]'), { height: 0 }, 0)
+        }
+
+        incomingContent.classList.add('active')
+        incomingVisual.classList.add('active')
+        tl.fromTo(incomingVisual, { autoAlpha: 0, xPercent: visualIsRight ? 3 : -3 }, { autoAlpha: 1, xPercent: 0 }, 0.3)
+          .fromTo(incomingContent.querySelector('[data-tabs="item-details"]'), { height: 0 }, { height: 'auto' }, 0)
+          .set(incomingBar, { scaleY: isHorizontal ? 1 : 0, scaleX: isHorizontal ? 0 : 1, transformOrigin: isHorizontal ? 'left center' : 'center top' }, 0)
       }
-
-      incomingContent.classList.add('active')
-      incomingVisual.classList.add('active')
-      tl.fromTo(incomingVisual, { autoAlpha: 0, xPercent: visualIsRight ? 3 : -3 }, { autoAlpha: 1, xPercent: 0 }, 0.3)
-        .fromTo(incomingContent.querySelector('[data-tabs="item-details"]'), { height: 0 }, { height: 'auto' }, 0)
-        .set(incomingBar, { scaleY: isHorizontal ? 1 : 0, scaleX: isHorizontal ? 0 : 1, transformOrigin: isHorizontal ? 'left center' : 'center top' }, 0)
     }
 
     // on page load, set first to active
